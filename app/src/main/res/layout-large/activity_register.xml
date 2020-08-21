@@ -39,7 +39,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Username"
+        android:text="Email"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
         app:layout_constraintVertical_bias="0.424" />
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/editTextEmail"
         android:layout_width="403dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
@@ -57,9 +57,9 @@
         android:backgroundTint="#5D74E2"
         android:fontFamily="@font/poppins_medium"
         android:foregroundTint="@color/colorAccent"
-        android:hint="Username"
-        android:inputType="textPersonName"
-        android:text="HoangPro"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:text="meo@meo.com"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Email"
+        android:text="ConfirmPassword"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +115,7 @@
         app:layout_constraintVertical_bias="0.302" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextConfirmPassword"
         android:layout_width="403dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
@@ -124,7 +124,7 @@
         android:fontFamily="@font/poppins_medium"
         android:foregroundTint="@color/colorPrimary"
         android:hint="Password"
-        android:inputType="textEmailAddress"
+        android:inputType="textPassword"
         android:text="meo@meo.com"
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -162,7 +162,7 @@
         app:layout_constraintVertical_bias="0.72" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgButtonRegist"
         android:layout_width="266dp"
         android:layout_height="83dp"
         android:background="@null"

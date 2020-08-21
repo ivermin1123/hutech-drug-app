@@ -38,7 +38,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Username"
+        android:text="Email"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.429" />
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/editTextEmail"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
@@ -57,8 +57,8 @@
         android:fontFamily="@font/poppins_medium"
         android:foregroundTint="@color/colorAccent"
         android:hint="Username"
-        android:inputType="textPersonName"
-        android:text="HoangPro"
+        android:inputType="textEmailAddress"
+        android:text="meo@meo.com"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +104,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_regular"
-        android:text="Email"
+        android:text="Confirm Password"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -114,7 +114,7 @@
         app:layout_constraintVertical_bias="0.258" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/editTextConfirmPassword"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_centerHorizontal="true"
@@ -123,8 +123,8 @@
         android:fontFamily="@font/poppins_medium"
         android:foregroundTint="@color/colorPrimary"
         android:hint="Password"
-        android:inputType="textEmailAddress"
-        android:text="meo@meo.com"
+        android:inputType="textPassword"
+        android:text="xxxxxxxxx"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -161,7 +161,7 @@
         app:layout_constraintVertical_bias="0.703" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/imgButtonRegist"
         android:layout_width="219dp"
         android:layout_height="62dp"
         android:background="@null"
