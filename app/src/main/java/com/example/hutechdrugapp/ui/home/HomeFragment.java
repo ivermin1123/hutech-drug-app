@@ -91,15 +91,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        try {
-//            mData=  FirebaseDatabase.getInstance().getReference("Thuoc").limitToFirst(4);
-            mData.addListenerForSingleValueEvent(valueEventListener);
-        }catch (Exception e){
-            Log.d("limit",e.toString());
-
-        }
-
-
 
         return root;
     }
@@ -111,25 +102,25 @@ public class HomeFragment extends Fragment {
     }
 
 
-    ValueEventListener valueEventListener=new ValueEventListener() {
-        @Override
-        public void onDataChange(@NonNull DataSnapshot snapshot) {
-            medicines.clear();
-            if(snapshot.exists()){
-                for (DataSnapshot snapshot1:snapshot.getChildren()){
-                    Medicine medicine=snapshot1.getValue(Medicine.class);
-                    medicines.add(new Medicine(medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc()));
-                }
-                adapter.notifyDataSetChanged();
-            }
-
-        }
-
-        @Override
-        public void onCancelled(@NonNull DatabaseError error) {
-
-        }
-    };
+//    ValueEventListener valueEventListener=new ValueEventListener() {
+//        @Override
+//        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//            medicines.clear();
+//            if(snapshot.exists()){
+//                for (DataSnapshot snapshot1:snapshot.getChildren()){
+//                    Medicine medicine=snapshot1.getValue(Medicine.class);
+//                    medicines.add(new Medicine(medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc()));
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//        }
+//
+//        @Override
+//        public void onCancelled(@NonNull DatabaseError error) {
+//
+//        }
+//    };
 
 
     private void loadData()

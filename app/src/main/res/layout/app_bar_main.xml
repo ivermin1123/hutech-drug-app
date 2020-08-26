@@ -44,14 +44,6 @@
 <!--            android:src="@drawable/ic_search"-->
 <!--            app:tint="@color/colorPrimary" />-->
 
-        <ImageButton
-            android:layout_marginLeft="200dp"
-            android:id="@+id/btnBack"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@null"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/user_img" />
     </androidx.appcompat.widget.Toolbar>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

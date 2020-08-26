@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 public class ChangePassActivity extends AppCompatActivity {
 
     EditText edtNewPass;
-    Button btnConfirm;
+    ImageButton btnConfirm;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
