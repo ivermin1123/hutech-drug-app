@@ -90,6 +90,7 @@ public class HomeFragment extends Fragment {
                 SearchNhaThuoc();
             }
         });
+
         // get 4 thuoc dau tien update
         try {
          Query  mData=  FirebaseDatabase.getInstance().getReference("Thuoc").limitToFirst(4);
