@@ -17,17 +17,65 @@
 
         </ImageView>
 
-        <TextView
-            android:id="@+id/txvNameDrug"
-            android:textSize="20sp"
-            android:text="Paracetamol"
-            android:textStyle="bold"
-            android:layout_width="match_parent"
+
+        <RelativeLayout
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        </TextView>
+            <TextView
+                android:id="@+id/txvNameDrug"
+                android:textSize="15sp"
+                android:text="Paracetamol"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/PhanLoai"
+                android:layout_below="@+id/txvNameDrug"
+                android:textStyle="bold"
+                android:textSize="10sp"
+                android:text="Phan Loai :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:id="@+id/HSD"
+                android:layout_below="@+id/PhanLoai"
+                android:textSize="10sp"
+                android:text="HSD :"
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:layout_toRightOf="@id/PhanLoai"
+                android:layout_below="@+id/txvNameDrug"
+                android:id="@+id/txvPhanLoai"
+                android:textSize="10sp"
+                android:text="thuoc ban theo don"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+            <TextView
+                android:layout_toRightOf="@+id/HSD"
+                android:layout_below="@+id/txvPhanLoai"
+                android:id="@+id/txvHSD"
+                android:textSize="10sp"
+                android:text="thuoc ban theo don"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
 
 
+
+        </RelativeLayout>
 
 
     </LinearLayout>

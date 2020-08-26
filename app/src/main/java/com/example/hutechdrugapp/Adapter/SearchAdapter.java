@@ -39,6 +39,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         holder.txvNameDrug.setText(list.get(position).getTenThuoc());
         //Glide.with().load(list.get(position).getHinhAnh()).into(holder.imgDrug);
         Picasso.get().load(list.get(position).getHinhAnh()).into(holder.imgDrug);
+        holder.phanloai.setText(list.get(position).getPhanLoai());
+        holder.hsd.setText(list.get(position).getHSD());
 
     }
 
@@ -48,13 +50,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txvNameDrug;
+        TextView txvNameDrug,phanloai,hsd;
         ImageView imgDrug;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             txvNameDrug=itemView.findViewById(R.id.txvNameDrug);
             imgDrug=itemView.findViewById(R.id.imvDrug);
+            phanloai=itemView.findViewById(R.id.txvPhanLoai);
+            hsd=itemView.findViewById(R.id.txvHSD);
         }
     }
 }

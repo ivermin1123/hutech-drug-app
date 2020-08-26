@@ -23,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private RecyclerView mresult;
     private SearchView searchView;
+    DatabaseReference mData;
 
     ArrayList<Medicine>list;
 
@@ -41,6 +43,7 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        mData=  FirebaseDatabase.getInstance().getReference();
         AnhXa();
         mMedicineDatabase= FirebaseDatabase.getInstance().getReference().child("Thuoc");
 
@@ -51,10 +54,15 @@ public class SearchActivity extends AppCompatActivity {
     private void AnhXa(){
 //        edtSearch=findViewById(R.id.edtSearchMedicine);
 //        imgSearch=findViewById(R.id.ivsearch);
+
         mresult=findViewById(R.id.mResultList);
         searchView=findViewById(R.id.SearchView);
+
     }
     //=========================================================
+
+
+    //=======================================================
 
     @Override
     protected void onStart() {
@@ -66,11 +74,15 @@ public class SearchActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
                         list=new ArrayList<>();
+
                         for (DataSnapshot ds:snapshot.getChildren()){
                             list.add(ds.getValue(Medicine.class));
+
                         }
+
                         SearchAdapter adapter=new SearchAdapter(list);
                         mresult.setAdapter(adapter);
+
                     }
                 }
 
@@ -81,6 +93,7 @@ public class SearchActivity extends AppCompatActivity {
             });
         }
         if(searchView!=null){
+
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
@@ -90,7 +103,9 @@ public class SearchActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     try {
+
                         search(newText);
+
                     }catch (Exception e){
                         Log.d("listdrug",e.toString());
                     }
@@ -99,10 +114,12 @@ public class SearchActivity extends AppCompatActivity {
                 }
             });
         }
+
     }
 
     private void search(String s){
         ArrayList<Medicine>mylist=new ArrayList<>();
+
         for (Medicine object: list){
             if(object.getTenThuoc().toLowerCase().contains(s.toLowerCase()))
             {
@@ -114,4 +131,5 @@ public class SearchActivity extends AppCompatActivity {
         SearchAdapter adapter=new SearchAdapter(mylist);
         mresult.setAdapter(adapter);
     }
+
 }

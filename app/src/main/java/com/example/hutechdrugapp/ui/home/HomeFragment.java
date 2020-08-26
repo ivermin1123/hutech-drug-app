@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
         adapter=new MedicineAdapter(medicines,getContext());
         recyclerView.setAdapter(adapter);
 
-        loadData();
+        //loadData();
 
         btnNhaThuoc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,9 +90,9 @@ public class HomeFragment extends Fragment {
                 SearchNhaThuoc();
             }
         });
-
+        // get 4 thuoc dau tien update
         try {
-//            mData=  FirebaseDatabase.getInstance().getReference("Thuoc").limitToFirst(4);
+         Query  mData=  FirebaseDatabase.getInstance().getReference("Thuoc").limitToFirst(4);
             mData.addListenerForSingleValueEvent(valueEventListener);
         }catch (Exception e){
             Log.d("limit",e.toString());
