@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "744491469871",
+    "firebase_url": "https://drugapp-5064b.firebaseio.com",
+    "project_id": "drugapp-5064b",
+    "storage_bucket": "drugapp-5064b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744491469871:android:c8d21be8fed3925a440ada",
+        "android_client_info": {
+          "package_name": "com.example.drugapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744491469871-vdt45kcv2k6tb54l9vc86o3jpnjhfdlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe7D5mg-F5po7DLrOmzvRxR3qBZf_Fhqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744491469871-vdt45kcv2k6tb54l9vc86o3jpnjhfdlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744491469871:android:dca9dc3acea146b8440ada",
+        "android_client_info": {
+          "package_name": "com.example.hutechdrugapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744491469871-64fhu4f21s8aboa08nfj402611s5364i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hutechdrugapp",
+            "certificate_hash": "cf7655bb4692b24635155f53d53fc81d807cfb17"
+          }
+        },
+        {
+          "client_id": "744491469871-vdt45kcv2k6tb54l9vc86o3jpnjhfdlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe7D5mg-F5po7DLrOmzvRxR3qBZf_Fhqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744491469871-vdt45kcv2k6tb54l9vc86o3jpnjhfdlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

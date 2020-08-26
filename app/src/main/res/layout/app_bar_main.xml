@@ -33,8 +33,19 @@
         android:background="@null"
         app:layout_anchor="@+id/appBarLayout"
         app:layout_anchorGravity="end|center">
+<!--        <ImageButton-->
+<!--            -->
+<!--            android:id="@+id/ibsearch"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--           android:background="@null"-->
+<!--            android:contentDescription="@string/app_name"-->
+<!--            android:padding="6dp"-->
+<!--            android:src="@drawable/ic_search"-->
+<!--            app:tint="@color/colorPrimary" />-->
 
         <ImageButton
+            android:layout_marginLeft="200dp"
             android:id="@+id/btnBack"
             android:layout_width="40dp"
             android:layout_height="40dp"
