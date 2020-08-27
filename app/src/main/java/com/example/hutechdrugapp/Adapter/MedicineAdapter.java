@@ -1,5 +1,6 @@
 package com.example.hutechdrugapp.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -38,28 +40,33 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         return new ViewHolder(itemView);
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        holder.itemView.setTag(medicines.get(position));
         holder.txtName.setText(medicines.get(position).getTenThuoc());
 //        Picasso.get().load(medicines.get(position).getHinhAnh()).into(holder.imgHinh);
         Glide.with(context).load(medicines.get(position).getHinhAnh()).into(holder.imgHinh);
-        holder.imgHinh.setOnClickListener(new View.OnClickListener() {
+        //holder.cardview2.setCardBackgroundColor(R.color.colorTrendingStart);
+        holder.cardview2.setBackgroundResource(R.drawable.card_view_border);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try{
-                    Intent intent=new Intent(context, DetailsActivity.class);
+                //    holder.cardview2.setCardBackgroundColor(view.getContext().getResources().getColor(R.color.colorPrimaryLight));
+                    Intent intent=new Intent(view.getContext(), DetailsActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("MedicineObject",medicines.get(position));
-                  //
+                    //
 
-                    context.startActivity(intent);
+                    view.getContext().startActivity(intent);
 
                 }catch (Exception e){
                     Log.d("NNNN",e.toString());
                 }
-
             }
         });
+
 
     }
 
@@ -71,11 +78,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView txtName;
         ImageView imgHinh;
-
+        CardView cardview2;
       public ViewHolder(@NonNull View itemView) {
           super(itemView);
           txtName=itemView.findViewById(R.id.txtMedicineName);
           imgHinh=itemView.findViewById(R.id.imgMedicine);
+          cardview2=itemView.findViewById(R.id.cardview2);
       }
   }
 }

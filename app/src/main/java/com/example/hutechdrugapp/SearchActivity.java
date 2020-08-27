@@ -48,6 +48,8 @@ public class SearchActivity extends AppCompatActivity {
         mMedicineDatabase= FirebaseDatabase.getInstance().getReference().child("Thuoc");
 
 
+
+
     }
 
     //========================================================
@@ -131,5 +133,8 @@ public class SearchActivity extends AppCompatActivity {
         SearchAdapter adapter=new SearchAdapter(mylist);
         mresult.setAdapter(adapter);
     }
+
+
+
 
 }

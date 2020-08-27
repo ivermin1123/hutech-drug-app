@@ -1,5 +1,6 @@
 package com.example.hutechdrugapp.ui.home;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +23,7 @@ import com.example.hutechdrugapp.ChangePassActivity;
 import com.example.hutechdrugapp.MapActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 import com.example.hutechdrugapp.R;
+import com.example.hutechdrugapp.SigninActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
     DatabaseReference mData;
 
     Button btnNhaThuoc;
+    private ProgressDialog progressDialog;
 
 
     private TextView txvChangePass;
@@ -55,6 +58,7 @@ public class HomeFragment extends Fragment {
 
         mData=  FirebaseDatabase.getInstance().getReference();
 
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -64,6 +68,9 @@ public class HomeFragment extends Fragment {
        // final TextView textView = root.findViewById(R.id.text_home);
         txvChangePass=root.findViewById(R.id.txvChangePass);
         btnNhaThuoc=root.findViewById(R.id.btnNhaThuoc);
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading Data ...");
+
 
 
 //        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -80,6 +87,7 @@ public class HomeFragment extends Fragment {
         medicines=new ArrayList<>();
 
         adapter=new MedicineAdapter(medicines,getContext());
+
         recyclerView.setAdapter(adapter);
 
         //loadData();
@@ -93,14 +101,16 @@ public class HomeFragment extends Fragment {
 
         // get 4 thuoc dau tien update
         try {
+
          Query  mData=  FirebaseDatabase.getInstance().getReference("Thuoc").limitToFirst(4);
+            progressDialog.show();
             mData.addListenerForSingleValueEvent(valueEventListener);
+
+
         }catch (Exception e){
             Log.d("limit",e.toString());
 
         }
-
-
 
         return root;
     }
@@ -115,13 +125,16 @@ public class HomeFragment extends Fragment {
     ValueEventListener valueEventListener=new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
+
             medicines.clear();
             if(snapshot.exists()){
                 for (DataSnapshot snapshot1:snapshot.getChildren()){
                     Medicine medicine=snapshot1.getValue(Medicine.class);
                     medicines.add(new Medicine(medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc()));
                 }
+
                 adapter.notifyDataSetChanged();
+                onStop();
             }
 
         }
@@ -131,6 +144,13 @@ public class HomeFragment extends Fragment {
 
         }
     };
+
+    @Override
+    public void onStop() {
+
+        super.onStop();
+        progressDialog.dismiss();
+    }
 
 
     private void loadData()

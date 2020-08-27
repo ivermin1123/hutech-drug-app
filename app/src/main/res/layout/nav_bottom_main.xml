@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:layout_gravity="bottom"
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        app:textSize="16sp"
+        app:iconSize="20sp"
+        android:layout_height="60dp"
+        app:backgroundColor="@color/colorPrimary"
+        app:menu="@menu/bottom_navigation_menu"/>
+
+</LinearLayout>

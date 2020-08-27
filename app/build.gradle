@@ -71,6 +71,9 @@ dependencies {
 
     implementation 'com.firebaseui:firebase-ui-database:6.3.0'
 
+    // bottom navbar
+    implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.6'
+
 
 
 

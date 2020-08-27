@@ -1,6 +1,8 @@
 package com.example.hutechdrugapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.hutechdrugapp.DetailsActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 import com.example.hutechdrugapp.R;
 import com.squareup.picasso.Picasso;
@@ -21,7 +25,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
 
     ArrayList<Medicine> list;
 
-    //Context context;
+   // Context context;
     public SearchAdapter(ArrayList<Medicine> list){
         this.list=list;
       //  this.context=context;
@@ -35,12 +39,33 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
+        holder.itemView.setTag(list.get(position));
         holder.txvNameDrug.setText(list.get(position).getTenThuoc());
         //Glide.with().load(list.get(position).getHinhAnh()).into(holder.imgDrug);
         Picasso.get().load(list.get(position).getHinhAnh()).into(holder.imgDrug);
         holder.phanloai.setText(list.get(position).getPhanLoai());
         holder.hsd.setText(list.get(position).getHSD());
+        //holder.cardView.setCardBackgroundColor(.getResources().getColor(R.color.colorPrimaryLight));
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    holder.cardView.setCardBackgroundColor(view.getContext().getResources().getColor(R.color.yellow));
+                    Intent intent=new Intent(view.getContext(), DetailsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("MedicineObject",list.get(position));
+                    //
+
+                    view.getContext().startActivity(intent);
+
+                }catch (Exception e){
+                    Log.d("NNNN",e.toString());
+                }
+            }
+        });
+
 
     }
 
@@ -52,6 +77,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txvNameDrug,phanloai,hsd;
         ImageView imgDrug;
+        CardView cardView;
 
 
         public MyViewHolder(@NonNull View itemView) {
@@ -60,6 +86,9 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
             imgDrug=itemView.findViewById(R.id.imvDrug);
             phanloai=itemView.findViewById(R.id.txvPhanLoai);
             hsd=itemView.findViewById(R.id.txvHSD);
+            cardView=itemView.findViewById(R.id.cardview);
         }
     }
+
+
 }

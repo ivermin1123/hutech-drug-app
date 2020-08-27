@@ -7,15 +7,19 @@
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardview2"
         android:layout_width="170dp"
         app:cardCornerRadius="20dp"
         android:background="@null"
         android:layout_height="160dp"
         card_view:cardElevation="4dp"
+        app:cardBackgroundColor="@color/cardview_light_background"
         card_view:contentPadding="1dp"
         card_view:cardCornerRadius="22sp"
         card_view:cardUseCompatPadding="true"
         >
+
+
 
         <ImageView
             android:id="@+id/imgMedicine"
@@ -29,6 +33,7 @@
         </ImageView>
 
         <TextView
+            android:background="@drawable/white_rectangle_background"
             android:layout_marginTop="60dp"
             android:layout_gravity="center"
             android:textStyle="bold"

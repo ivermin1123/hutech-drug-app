@@ -63,7 +63,7 @@ public class DetailsActivity extends AppCompatActivity {
                 // Medicine medicine=snapshot.getValue(Medicine.class);
                 Intent intent=getIntent();
                 Medicine medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
-                Toast.makeText(DetailsActivity.this,medicine.getHinhAnh(),Toast.LENGTH_LONG).show();
+
                 Picasso.get().load(medicine.getHinhAnh()).into(imgMedicine);
 
                 //  imgMedicine.setImageResource(medicine.getHinhAnh().);
