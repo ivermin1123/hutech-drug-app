@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:weightSum="10"
+    tools:context=".DetailsActivity">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:background="@drawable/bg_header_new">
+
+            <ImageView
+                android:id="@+id/ivback"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/app_name"
+                android:padding="6dp"
+                app:srcCompat="@drawable/ic_logout"
+                app:tint="@color/colorPrimary" />
+
+            <TextView
+                android:id="@+id/tvTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="Efferalgan 500mg"
+                android:textColor="@color/colorPrimary"
+                android:textSize="26dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:id="@+id/ivesdk"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_weight="5"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_sdk2"
+                        app:tint="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/tvnd1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="5"
+                        android:text="VN-19069-15"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:id="@+id/ivehc"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_weight="5"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_hc"
+                        app:tint="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/txvNameMedicineDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="5"
+                        android:text="Paracetamol"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <ImageView
+                        android:id="@+id/ivehsd"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_weight="5"
+                        android:contentDescription="@string/app_name"
+                        app:srcCompat="@drawable/ic_hsd"
+                        app:tint="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/txvHsdDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:layout_weight="5"
+                        android:text="24 tháng"
+                        android:textSize="16dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imgMedicineDetails"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginRight="-200dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/efferalgan_removebg_preview" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@drawable/bottom_background"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+
+            <TextView
+                android:id="@+id/TacDung"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rectangle_background"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="Tác dụng"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+                <TextView
+                    android:layout_toRightOf="@id/TacDung"
+                    android:id="@+id/txvtacdung"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="3"
+                    android:text="@string/content_text"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="16sp" />
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rectangle_background"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="Chỉ Định"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txvchidinh"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/content_text"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rectangle_background"
+                android:paddingLeft="8dp"
+                android:paddingTop="2dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="Chống Chỉ Định"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txvchongchidinh"
+                android:layout_marginLeft="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@string/content_text"
+                android:textColor="@color/colorAccent"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

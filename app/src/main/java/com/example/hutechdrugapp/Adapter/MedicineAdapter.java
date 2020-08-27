@@ -2,6 +2,7 @@ package com.example.hutechdrugapp.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import com.example.hutechdrugapp.DetailsActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 import com.example.hutechdrugapp.R;
 
@@ -45,15 +47,15 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 try{
-//                    Intent intent=new Intent(context, DetailsActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    intent.putExtra("MedicineObject",medicines.get(position));
-//                  //  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//                    context.startActivity(intent);
+                    Intent intent=new Intent(context, DetailsActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("MedicineObject",medicines.get(position));
+                  //
+
+                    context.startActivity(intent);
 
                 }catch (Exception e){
-                   // Log.d("NNNN",e.toString());
+                    Log.d("NNNN",e.toString());
                 }
 
             }
