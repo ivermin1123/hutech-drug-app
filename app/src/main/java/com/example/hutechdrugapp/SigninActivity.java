@@ -1,11 +1,13 @@
 package com.example.hutechdrugapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,9 +24,11 @@ public class SigninActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    private ProgressDialog progressDialog;
 
     EditText edtUserName,edtPassword;
     TextView txtSignup;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +38,8 @@ public class SigninActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-
-
-
+        progressDialog.setMessage("Login ...");
+        //Loading
 
         txtSignup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +48,6 @@ public class SigninActivity extends AppCompatActivity {
                 Intent myIntent = new Intent(SigninActivity.this, RegisterActivity.class);
                 myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(myIntent);
-
             }
         });
 
@@ -54,9 +56,9 @@ public class SigninActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!validateUserName() | !validatePassWord()) {
-
                     Toast.makeText(SigninActivity.this, "Hãy nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
                 } else {
+                    progressDialog.show();
                     DangNhap();
                 }
             }
@@ -67,7 +69,8 @@ public class SigninActivity extends AppCompatActivity {
     private void AnhXa(){
         edtPassword=(EditText)findViewById(R.id.editTextPassword);
         edtUserName=(EditText)findViewById(R.id.editTextUsername);
-         txtSignup = findViewById(R.id.txtSignup);
+        txtSignup = findViewById(R.id.txtSignup);
+        progressDialog = new ProgressDialog(SigninActivity.this);
 
     }
 
@@ -108,22 +111,24 @@ public class SigninActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-
                             Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
                             //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                             finish();
-
 
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(SigninActivity.this,"Sai Tên Đăng Nhập Hoặc Mật Khẩu!!!",Toast.LENGTH_SHORT).show();
                             // ...
                         }
-
                         // ...
                     }
                 });
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        progressDialog.dismiss();
     }
 }

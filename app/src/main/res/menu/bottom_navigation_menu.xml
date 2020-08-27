@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_fragment"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+        />
+
+    <item
+        android:id="@+id/drug_fragment"
+        android:title="Drug"
+        android:icon="@drawable/ic_pill"
+        />
+
+    <item
+        android:id="@+id/store_fragment"
+        android:title="Pharma"
+        android:icon="@drawable/ic_store"
+        />
+
+    <item
+        android:id="@+id/user_fragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_user"
+        />
+
+</menu>

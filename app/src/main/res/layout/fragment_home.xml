@@ -57,6 +57,7 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <RelativeLayout
+            android:id="@+id/rlt_bottom"
             android:layout_below="@+id/recycle_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -107,11 +108,12 @@
 
             </Button>
 
-
-
         </RelativeLayout>
 
+
     </RelativeLayout>
+
+
 
 
 </ScrollView>
