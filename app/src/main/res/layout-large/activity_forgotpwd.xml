@@ -68,10 +68,12 @@
         android:fontFamily="@font/poppins_regular"
         android:layout_marginTop="20dp"
         android:gravity="center"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
         android:textSize="22sp"
         android:layout_below="@+id/txv_email_nofi"
         android:layout_centerHorizontal="true"/>
-    Hoangpro123@!!
+
     <ImageButton
         android:id="@+id/btn_send"
         android:layout_width="280dp"

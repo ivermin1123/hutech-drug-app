@@ -1,5 +1,6 @@
 package com.example.hutechdrugapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.flatdialoglibrary.dialog.FlatDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,6 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private FirebaseUser mUser;
     ImageButton btnRegist;
     CheckBox checkBox;
+
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -80,7 +83,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 }
                 else {
                     DangKy();
-
                 }
             }
         });
@@ -112,19 +114,35 @@ private void DangKy(){
     String email=edtEmail.getText().toString();
     String password=edtPassword.getText().toString();
     mAuth.createUserWithEmailAndPassword(email, password)
-
             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     // Sign in success, update UI with the signed-in user's information
                     if(task.isSuccessful())
                     {
-                        Toast.makeText(RegisterActivity.this,"Dang Ky Thanh Cong",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, SigninActivity.class);
-                        startActivity(intent);
-                        mAuth.signOut();
+//<<<<<<< HEAD
+//                        Toast.makeText(RegisterActivity.this,"Dang Ky Thanh Cong",Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(RegisterActivity.this, SigninActivity.class);
+//                        startActivity(intent);
+//                        mAuth.signOut();
+//=======
+                        final FlatDialog flatDialog = new FlatDialog(RegisterActivity.this);
+                        flatDialog.setTitle("Success")
+                                .setSubtitle("Dang Ky Thanh Cong.")
+                                .setFirstButtonText("OK")
+                                .withFirstButtonListner(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent myIntent = new Intent(RegisterActivity.this, SigninActivity.class);
+                                        myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(myIntent);
+                                        mAuth.signOut();
+                                    }
+                                })
+                                .show();
+
                     }else {
-                        Toast.makeText(RegisterActivity.this,"Email Wrong !!!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this,"Email da ton tai!!!",Toast.LENGTH_SHORT).show();
                     }
                 }
 

@@ -11,9 +11,16 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.flatdialoglibrary.dialog.FlatDialog;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.regex.Pattern;
+
+import ir.androidexception.andexalertdialog.AndExAlertDialog;
+import ir.androidexception.andexalertdialog.AndExAlertDialogListener;
+import ir.androidexception.andexalertdialog.Font;
 
 public class ForgotpwdActivity extends AppCompatActivity {
     private ImageButton btn_reset, btn_back;
@@ -42,14 +49,40 @@ public class ForgotpwdActivity extends AppCompatActivity {
                 if(email.isEmpty()){
                     Toast.makeText(ForgotpwdActivity.this,"Vui lòng nhập email muốn reset",Toast.LENGTH_LONG).show();
                 }
+                else if (!isValid(email)){
+                    Toast.makeText(ForgotpwdActivity.this,"Vui lòng nhập email hợp lệ",Toast.LENGTH_LONG).show();
+                }
                 else {
                     ForgotPass(email);
-                    Intent myIntent = new Intent(ForgotpwdActivity.this, SigninActivity.class);
-                    myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(myIntent);;
+                    final FlatDialog flatDialog = new FlatDialog(ForgotpwdActivity.this);
+                    flatDialog.setTitle("Success")
+                            .setSubtitle(String.format("An email has been sent to %s with further instructions.", email))
+                            .setFirstButtonText("OK")
+                            .withFirstButtonListner(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent myIntent = new Intent(ForgotpwdActivity.this, SigninActivity.class);
+                                    myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(myIntent);
+                                }
+                            })
+                            .show();
                 }
             }
         });
+    }
+
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                "[a-zA-Z0-9_+&*-]+)*@" +
+                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
     }
 
     //=======================================================================================================================================

@@ -66,6 +66,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/enter_email_address"
         android:fontFamily="@font/poppins_regular"
+        android:inputType="textEmailAddress"
+        android:maxLines="1"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:textSize="20sp"

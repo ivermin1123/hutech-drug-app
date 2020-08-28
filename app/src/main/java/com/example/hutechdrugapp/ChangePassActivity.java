@@ -2,6 +2,8 @@ package com.example.hutechdrugapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.hutechdrugapp.ui.user.UserFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,8 +25,12 @@ import java.util.regex.Pattern;
 
 public class ChangePassActivity extends AppCompatActivity {
 
+
     EditText edtNewPass,edtEntirePassword,edtCurrentPass;
     ImageButton btnConfirm;
+
+    ImageButton  btnBack;
+
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
 
@@ -47,7 +54,18 @@ public class ChangePassActivity extends AppCompatActivity {
         edtNewPass=findViewById(R.id.edtNewPass);
         edtEntirePassword=findViewById(R.id.editTextConfirmPassword);
         btnConfirm=findViewById(R.id.confirmnewpass);
+
         edtCurrentPass=findViewById(R.id.edtCurrentPass);
+
+        btnBack=findViewById(R.id.btnBack) ;
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+
 
         try {
             btnConfirm.setOnClickListener(new View.OnClickListener() {

@@ -31,6 +31,9 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import ir.androidexception.andexalertdialog.AndExAlertDialog;
+import ir.androidexception.andexalertdialog.AndExAlertDialogListener;
+import ir.androidexception.andexalertdialog.Font;
 import me.ibrahimsn.lib.OnItemSelectedListener;
 import me.ibrahimsn.lib.SmoothBottomBar;
 
@@ -42,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+
 
 
     @Override
@@ -101,31 +105,32 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        AlertDialog.Builder alerdialog=new AlertDialog.Builder(this);
-        alerdialog.setTitle("Log out !");
-        alerdialog.setMessage("Ban Co Muon Thoat ?");
-        alerdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+        new AndExAlertDialog.Builder(HomeActivity.this)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                //Positive: Phai, Negative: Trai
+                .setPositiveBtnText("Yes")
+                .setNegativeBtnText("No")
+                .setCancelableOnTouchOutside(true)
+                .setFont(Font.IRAN_SANS)
+                .OnPositiveClicked(new AndExAlertDialogListener() {
+                    @Override
+                    public void OnClick(String input) {
+                        //Logout here
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+                        Intent intent=new Intent(HomeActivity.this,SigninActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                    }
+                })
+                .OnNegativeClicked(new AndExAlertDialogListener() {
+                    @Override
+                    public void OnClick(String input) {
 
-                FirebaseAuth.getInstance().signOut();
-                finish();
-                Intent intent=new Intent(HomeActivity.this,SigninActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-
-            }
-        });
-
-        alerdialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-
-            }
-        });
-
-        alerdialog.show();
+                    }
+                })
+                .build();
     }
 
 
