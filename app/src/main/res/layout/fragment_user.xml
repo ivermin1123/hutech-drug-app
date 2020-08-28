@@ -30,21 +30,21 @@
 
     <TextView
         android:id="@+id/txvDisplayName"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/img_profile"
-        android:fontFamily="@font/poppins_black"
-        android:textColor="#707070"
-        android:textSize="21sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tên người dùng">
+        android:layout_below="@+id/img_profile"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/poppins_black"
+        android:text="Tên người dùng"
+        android:textColor="#707070"
+        android:textSize="21sp"
+        android:textStyle="bold">
 
     </TextView>
 
     <TextView
 
-        android:id="@+id/txvDesc"
+        android:id="@+id/txvEmail"
         android:text="caongocnguyenngu@gmail.com"
         android:textSize="17sp"
         android:fontFamily="@font/poppins_light"
@@ -59,7 +59,7 @@
         android:id="@+id/btn_change_pwd"
         android:layout_width="320dp"
         android:layout_height="90dp"
-        android:layout_below="@+id/txvDesc"
+        android:layout_below="@+id/txvEmail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="90dp"
         android:background="@null"
