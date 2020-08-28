@@ -56,7 +56,9 @@ public class HomeActivity extends AppCompatActivity {
         toolbar.setNavigationIcon(null);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.hide();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         // Passing each menu ID as a set of Ids because each

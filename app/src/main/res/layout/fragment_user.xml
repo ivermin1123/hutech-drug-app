@@ -94,7 +94,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:textSize="18dp"
-            android:text="Change PassWord"
+            android:text="Change Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -119,7 +119,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:textSize="18dp"
-            android:text="Change PassWord"
+            android:text="Logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
