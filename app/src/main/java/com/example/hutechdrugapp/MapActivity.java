@@ -44,7 +44,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-    int PROXIMITY_RADIUS=10000;
+    int PROXIMITY_RADIUS=5000;
 
     FusedLocationProviderClient fusedLocationProviderClient;
     private static final int REQUEST_CODE = 101;

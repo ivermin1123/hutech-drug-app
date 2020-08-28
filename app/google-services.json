@@ -44,6 +44,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "744491469871-64fhu4f21s8aboa08nfj402611s5364i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hutechdrugapp",
+            "certificate_hash": "cf7655bb4692b24635155f53d53fc81d807cfb17"
+          }
+        },
+        {
           "client_id": "744491469871-vdt45kcv2k6tb54l9vc86o3jpnjhfdlm.apps.googleusercontent.com",
           "client_type": 3
         }

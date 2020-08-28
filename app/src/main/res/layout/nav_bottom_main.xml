@@ -8,7 +8,7 @@
         android:layout_gravity="bottom"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        app:textSize="16sp"
+        app:textSize="11sp"
         app:iconSize="20sp"
         android:layout_height="60dp"
         app:backgroundColor="@color/colorPrimary"

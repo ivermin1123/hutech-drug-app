@@ -22,6 +22,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
@@ -86,6 +88,9 @@ public class HomeActivity extends AppCompatActivity {
 
 
         //txvCurrentUser.setText(mUser.getEmail());
+//        GoogleSignInAccount signInAccount= GoogleSignIn.getLastSignedInAccount(this);
+
+        Toast.makeText(HomeActivity.this, mUser.getEmail(),Toast.LENGTH_LONG).show();
     }
 
 
