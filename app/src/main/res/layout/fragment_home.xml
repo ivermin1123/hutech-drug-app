@@ -32,10 +32,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="21dp"
         android:text="Name user"
         android:textColor="#212121"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/cardProfilePicture"
         app:layout_constraintEnd_toStartOf="@id/cardProfilePicture"
@@ -51,7 +51,7 @@
         android:layout_marginEnd="20dp"
         android:text="@string/chucngaymoi"
         android:textColor="#212121"
-        android:textSize="28sp"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@id/cardProfilePicture" />
 
@@ -63,7 +63,7 @@
         android:layout_marginEnd="20dp"
         android:text="@string/timkiemHome"
         android:textColor="#757575"
-        android:textSize="28sp"
+        android:textSize="22sp"
         app:layout_constraintTop_toBottomOf="@id/textWhereAreWe" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -82,14 +82,14 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:layout_gravity="bottom"
-        app:iconSize="20dp"
+        app:iconSize="22dp"
         app:iconTint="#757575"
         app:iconTintActive="#212121"
         app:indicatorColor="#ECECEC"
         app:indicatorRadius="10dp"
         app:menu="@menu/bottom_navigation_menu"
         app:textColor="#212121"
-        app:textSize="15sp"
+        app:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 
