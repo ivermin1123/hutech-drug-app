@@ -43,8 +43,7 @@ public class UserFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         // final TextView textView = root.findViewById(R.id.text_home);
-        txvChangePass=root.findViewById(R.id.txvChangePass);
-        changePass();
+//        changePass();
         return root;
     }
 //=========================================================================================================

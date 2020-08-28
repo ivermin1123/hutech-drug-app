@@ -76,7 +76,6 @@ public class HomeFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         // final TextView textView = root.findViewById(R.id.text_home);
-        txvChangePass = root.findViewById(R.id.txvChangePass);
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMessage("Loading Data ...");
         txvNameUser = root.findViewById(R.id.txtNameuser);

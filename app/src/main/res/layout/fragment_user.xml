@@ -4,126 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.user.UserFragment">
+    tools:context=".ui.user.UserFragment"
+    android:background="@drawable/bg_user_2">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginTop="60dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/user_img"
-        android:id="@+id/img_profile"
-        android:layout_width="120dp"
-        android:layout_height="120dp">
-
-    </de.hdodenhof.circleimageview.CircleImageView>
     <TextView
         android:id="@+id/txvTitle"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:textSize="27sp"
+        android:fontFamily="@font/poppins_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thông tin cá nhân"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ex_avatar_1"
+        android:id="@+id/img_profile"
+        android:layout_width="115dp"
+        android:layout_height="115dp">
+    </de.hdodenhof.circleimageview.CircleImageView>
+
+    <TextView
+        android:id="@+id/txvDisplayName"
+        android:layout_marginTop="10dp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/img_profile"
-        android:textColor="#000"
+        android:fontFamily="@font/poppins_black"
+        android:textColor="#707070"
+        android:textSize="21sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CNN">
+        android:text="Tên người dùng">
 
     </TextView>
 
     <TextView
 
         android:id="@+id/txvDesc"
-        android:text="Developer :))"
+        android:text="caongocnguyenngu@gmail.com"
+        android:textSize="20sp"
+        android:fontFamily="@font/poppins_light"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/txvTitle"
+        android:layout_below="@+id/txvDisplayName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
     </TextView>
 
-    <ImageView
-        android:id="@+id/imgpic"
-        android:layout_marginTop="30dp"
+    <ImageButton
+        android:id="@+id/btn_change_pwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/btn_change_pwd"
+        android:background="@null"
         android:layout_below="@+id/txvDesc"
-        android:scaleY="2"
-        android:scaleX="3"
-        android:src="@drawable/profiledecorate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_centerHorizontal="true"
+        />
 
-    </ImageView>
+    <ImageButton
+        android:id="@+id/btn_change_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_change_name"
+        android:background="@null"
+        android:layout_below="@+id/btn_change_pwd"
+        android:layout_centerHorizontal="true"
+        />
 
-    <LinearLayout
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/imgpic"
-        android:orientation="horizontal"
-        android:id="@+id/linear_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_marginLeft="70dp"
-            android:src="@drawable/ic_person"
-            android:layout_width="36dp"
-            android:layout_height="36dp">
-        </ImageView>
-        <TextView
-            android:id="@+id/txvChangePass"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="18dp"
-            android:text="Change PassWord"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_logout"
+        android:background="@null"
+        android:layout_below="@+id/btn_change_name"
+        android:layout_centerHorizontal="true"
+        />
 
-        </TextView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/linear_1"
-        android:orientation="horizontal"
-        android:id="@+id/linear_2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_marginLeft="70dp"
-            android:src="@drawable/ic_person"
-            android:layout_width="36dp"
-            android:layout_height="36dp">
-        </ImageView>
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="18dp"
-            android:text="Change Name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </TextView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/linear_2"
-        android:orientation="horizontal"
-        android:id="@+id/linear_3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageView
-            android:layout_marginLeft="70dp"
-            android:src="@drawable/ic_person"
-            android:layout_width="36dp"
-            android:layout_height="36dp">
-        </ImageView>
-        <TextView
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:textSize="18dp"
-            android:text="Logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-        </TextView>
-
-    </LinearLayout>
 </RelativeLayout>

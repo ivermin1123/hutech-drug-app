@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class DetailsActivity extends AppCompatActivity {
     Database database;
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
+    Button btnSaveMedicine;
 
     DatabaseReference mData;
     FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -39,17 +41,26 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         Anhxa();
+
         database=new Database(this,"product.sqlite",null,3);
+        CreateTable();
+     //   database.QueryData("DROP TABLE IF EXISTS Product");
+
         mAuth = FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
         mData= FirebaseDatabase.getInstance().getReference();
 
-//        Intent intent=getIntent();
-//        Medicine medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
-        //  Toast.makeText(DetailsActivity.this,medicine.getHinhAnh(),Toast.LENGTH_LONG).show();
+
         LoadAnh();
 
         loadDetailsMedicine();
+
+        btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               SaveMedicine();
+            }
+        });
     }
     private void Anhxa(){
         imgMedicine=findViewById(R.id.imgMedicineDetails);
@@ -58,6 +69,7 @@ public class DetailsActivity extends AppCompatActivity {
         txvTacDung=findViewById(R.id.txvtacdung);
         txvChiDinh=findViewById(R.id.txvchidinh);
         txvChongChiDinh=findViewById(R.id.txvchongchidinh);
+        btnSaveMedicine=findViewById(R.id.btnLuuThuoc);
 
     }
 
@@ -68,23 +80,28 @@ public class DetailsActivity extends AppCompatActivity {
 
         if(!tableExist)
         {
-            database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,ChiDinh VARCHAR(100),ChongChiDinh VARCHAR(100),Gia DOUBLE)");
-//            private String ChiDinh;
-//            private String ChongChiDinh;
-//            private String HSD;
-//            private String HinhAnh;
-//            private String HoatChat;
-//            private String NongDo;
-//            private String PhanLoai;
-//            private String TacDung;
-//            private String TenThuoc;
-
+            database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenThuoc VARCHAR(30),UNIQUE(TenThuoc))");
         }
         else {
 
         }
 
 
+    }
+
+    private void SaveMedicine(){
+        String tensp=txvNameMedicine.getText().toString();
+        //  String cost=edtCostSP.getText().toString();
+        try {
+            database.QueryData("INSERT OR REPLACE INTO Product VALUES(null,'"+tensp+"')");
+            //SELECT 5, 'text to insert'
+            //WHERE NOT EXISTS(SELECT 1 FROM memos WHERE id = 5 AND text = 'text to insert')
+            Toast.makeText(DetailsActivity.this,"Save Success",Toast.LENGTH_LONG).show();
+
+        }catch (Exception e){
+
+            Log.d("BBB",e.toString());
+        }
     }
 
     private void LoadAnh(){

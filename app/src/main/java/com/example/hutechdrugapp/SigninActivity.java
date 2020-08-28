@@ -84,7 +84,9 @@ public class SigninActivity extends AppCompatActivity {
         txtForgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogForgotPass();
+                Intent myIntent = new Intent(SigninActivity.this, ForgotpwdActivity.class);
+                myIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(myIntent);;
             }
         });
 
@@ -247,41 +249,7 @@ public class SigninActivity extends AppCompatActivity {
         super.onStop();
         progressDialog.dismiss();
     }
-//=======================================================================================================================================
-    private void ForgotPass(String email){
-        FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d("getpass", "Email sent.");
-                        }
-                    }
-                });
-    }
 
     //==============================================================================================================
-    private void DialogForgotPass(){
-        Dialog dialog=new Dialog(this);
-        dialog.setContentView(R.layout.dialog_custom);
-
-        final EditText edtEmail=dialog.findViewById(R.id.edtEmailRegistered);
-        Button btnSend=dialog.findViewById(R.id.btnSendEmail);
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email=edtEmail.getText().toString();
-                if(email.isEmpty()){
-                    Toast.makeText(SigninActivity.this,"Hay Nhap Email Da Dang Ky",Toast.LENGTH_LONG).show();
-                }
-                else {
-                    ForgotPass(email);
-                }
-
-            }
-        });
-        dialog.show();
-    }
-
 
 }
