@@ -43,13 +43,8 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        mData=  FirebaseDatabase.getInstance().getReference();
         AnhXa();
         mMedicineDatabase= FirebaseDatabase.getInstance().getReference().child("Thuoc");
-
-
-
-
     }
 
     //========================================================

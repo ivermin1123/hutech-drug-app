@@ -17,6 +17,10 @@ import com.bumptech.glide.Glide;
 import com.example.hutechdrugapp.DetailsActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 import com.example.hutechdrugapp.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -56,7 +60,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                     Intent intent=new Intent(view.getContext(), DetailsActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("MedicineObject",list.get(position));
-                    //
+
+                    // moi lan search va select medicine thi se luu lai giu lieu da xem theo user email
+                    FirebaseAuth  mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser mUser = mAuth.getCurrentUser();
+                    DatabaseReference mData= FirebaseDatabase.getInstance().getReference();
+
+                   // mData.child("LichSuTraCuu").child("caongocnguyen99@").setValue(mUser.getEmail());
+                  //  mData.child("LichSuTraCuu").child("ThuocDaTraCuu").setValue(list.get(position));
+
+
 
                     view.getContext().startActivity(intent);
 

@@ -4,14 +4,30 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--    <me.ibrahimsn.lib.SmoothBottomBar-->
+<!--        android:layout_gravity="bottom"-->
+<!--        android:id="@+id/bottomBar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        app:textSize="16sp"-->
+<!--        app:iconSize="20sp"-->
+<!--        android:layout_height="60dp"-->
+<!--        app:backgroundColor="@color/colorPrimary"-->
+<!--        app:menu="@menu/bottom_navigation_menu"/>-->
+
     <me.ibrahimsn.lib.SmoothBottomBar
-        android:layout_gravity="bottom"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        app:textSize="11sp"
-        app:iconSize="20sp"
-        android:layout_height="60dp"
-        app:backgroundColor="@color/colorPrimary"
-        app:menu="@menu/bottom_navigation_menu"/>
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        app:iconSize="20dp"
+        app:iconTint="#757575"
+        app:iconTintActive="#212121"
+        app:indicatorColor="#ECECEC"
+        app:indicatorRadius="10dp"
+        app:menu="@menu/bottom_navigation_menu"
+        app:textColor="#212121"
+        app:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
 
 </LinearLayout>
