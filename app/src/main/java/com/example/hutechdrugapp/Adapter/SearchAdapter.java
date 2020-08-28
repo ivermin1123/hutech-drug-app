@@ -61,15 +61,10 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("MedicineObject",list.get(position));
 
+
                     // moi lan search va select medicine thi se luu lai giu lieu da xem theo user email
-                    FirebaseAuth  mAuth = FirebaseAuth.getInstance();
-                    FirebaseUser mUser = mAuth.getCurrentUser();
-                    DatabaseReference mData= FirebaseDatabase.getInstance().getReference();
 
-                   // mData.child("LichSuTraCuu").child("caongocnguyen99@").setValue(mUser.getEmail());
                   //  mData.child("LichSuTraCuu").child("ThuocDaTraCuu").setValue(list.get(position));
-
-
 
                     view.getContext().startActivity(intent);
 

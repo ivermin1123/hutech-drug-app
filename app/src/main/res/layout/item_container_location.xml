@@ -61,7 +61,7 @@
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginStart="20dp"
-            android:src="@drawable/ic_location"
+            android:src="@drawable/ic_hsd"
             android:contentDescription="@string/app_name"
             app:layout_constraintBottom_toBottomOf="@id/textLocation"
             app:layout_constraintTop_toTopOf="@id/textLocation"

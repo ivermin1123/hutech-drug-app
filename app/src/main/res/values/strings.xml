@@ -22,7 +22,9 @@
     <string name="drugs">Thuốc</string>
     <string name="ho_t_ch_t">Hoạt chất</string>
     <string name="content_text">Tương tác thuốc là sự tác dụng qua lại lẫn nhau giữa thuốc này với thuốc khác, giữa thuốc với tình trạng sinh lý của cơ thể.</string>
-
+    <string name="xinChao">Xin chào!!</string>
+    <string name="chucngaymoi">Chúc bạn có một gày vui vẻ</string>
+    <string name="timkiemHome">Tìm kiếm thứ gì đó nào ❤</string>
 
 
     <string-array name="drugs">

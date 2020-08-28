@@ -59,9 +59,10 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
+
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.hide();
-        actionBar.setDisplayShowTitleEnabled(false);
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
@@ -127,18 +128,5 @@ public class HomeActivity extends AppCompatActivity {
         alerdialog.show();
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        switch (item.getItemId()){
-//            case R.id.action_Search:
-//                Intent intent=new Intent(HomeActivity.this,SearchActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                startActivity(intent);
-//                break;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//        return super.onOptionsItemSelected(item);
-//
-//    }
+
 }
