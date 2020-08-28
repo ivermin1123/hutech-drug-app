@@ -120,7 +120,7 @@ private void DangKy(){
                     if(task.isSuccessful())
                     {
                         Toast.makeText(RegisterActivity.this,"Dang Ky Thanh Cong",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(RegisterActivity.this, SigninActivity.class);
                         startActivity(intent);
                         mAuth.signOut();
                     }else {

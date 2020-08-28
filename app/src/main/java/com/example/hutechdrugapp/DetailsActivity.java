@@ -26,6 +26,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+
 public class DetailsActivity extends AppCompatActivity {
     TextView txvNameMedicine,txvHSD,txvTacDung,txvChiDinh,txvChongChiDinh;
     Database database;
@@ -41,11 +49,10 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         Anhxa();
-
         database=new Database(this,"product.sqlite",null,3);
-        CreateTable();
-     //   database.QueryData("DROP TABLE IF EXISTS Product");
+       // database.QueryData("DROP TABLE IF EXISTS Product");
 
+        CreateTable();
         mAuth = FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
         mData= FirebaseDatabase.getInstance().getReference();
@@ -55,10 +62,15 @@ public class DetailsActivity extends AppCompatActivity {
 
         loadDetailsMedicine();
 
+
         btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               SaveMedicine();
+
+                SaveData();
+
+
+
             }
         });
     }
@@ -78,31 +90,60 @@ public class DetailsActivity extends AppCompatActivity {
         boolean tableExist=tableExists("Product");
         Log.d("AAA", String.valueOf(tableExist));
 
+
         if(!tableExist)
         {
-            database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenThuoc VARCHAR(30),UNIQUE(TenThuoc))");
+
+            // tao bang
+            //database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenSP VARCHAR(100),Gia DOUBLE)");
+            database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenThuoc VARCHAR(100))");
+
         }
         else {
+
 
         }
 
 
     }
 
-    private void SaveMedicine(){
+    private void SaveData(){
         String tensp=txvNameMedicine.getText().toString();
         //  String cost=edtCostSP.getText().toString();
+
+
         try {
-            database.QueryData("INSERT OR REPLACE INTO Product VALUES(null,'"+tensp+"')");
-            //SELECT 5, 'text to insert'
-            //WHERE NOT EXISTS(SELECT 1 FROM memos WHERE id = 5 AND text = 'text to insert')
-            Toast.makeText(DetailsActivity.this,"Save Success",Toast.LENGTH_LONG).show();
+            database.QueryData("INSERT  INTO Product(Id,TenThuoc) SELECT null,'"+tensp+"' WHERE NOT EXISTS(SELECT TenThuoc FROM Product WHERE TenThuoc='"+tensp+"')");
+//OR REPLACE
+
 
         }catch (Exception e){
 
             Log.d("BBB",e.toString());
         }
     }
+
+    boolean tableExists( String tableName)
+    {
+        if (tableName == null )
+        {
+            return false;
+        }
+        Cursor cursor = database.GetData("SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name ='"+tableName+"'");
+        if (!cursor.moveToFirst())
+        {
+            cursor.close();
+            return false;
+        }
+        int count = cursor.getInt(0);
+        cursor.close();
+        return count > 0;
+    }
+
+
+
+
+
 
     private void LoadAnh(){
         mData.child("Thuoc").addChildEventListener(new ChildEventListener() {
@@ -150,20 +191,7 @@ public class DetailsActivity extends AppCompatActivity {
         txvChongChiDinh.setText(medicine.getChongChiDinh());
     }
 
-    boolean tableExists( String tableName)
-    {
-        if (tableName == null )
-        {
-            return false;
-        }
-        Cursor cursor = database.GetData("SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name ='"+tableName+"'");
-        if (!cursor.moveToFirst())
-        {
-            cursor.close();
-            return false;
-        }
-        int count = cursor.getInt(0);
-        cursor.close();
-        return count > 0;
-    }
+
+
+
 }
