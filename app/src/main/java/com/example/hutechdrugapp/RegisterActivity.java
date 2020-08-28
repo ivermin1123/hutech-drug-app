@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //                    "(?=.*[a-zA-Z])" +      //any letter
                     "(?=.*[@#$%^&+=])" +    //at least 1 special character
                     "(?=\\S+$)" +          //no white spaces
-                    ".{4,10}" +               //at least 4 characters
+                    ".{6,20}" +               //at least 4 characters
                     "$");
 
     @Override
