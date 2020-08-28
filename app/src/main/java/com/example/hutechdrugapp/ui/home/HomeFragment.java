@@ -147,7 +147,6 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onStop() {
-
         super.onStop();
         progressDialog.dismiss();
     }
@@ -163,8 +162,6 @@ public class HomeFragment extends Fragment {
                 medicines.add(new Medicine(medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc()));
 
                 adapter.notifyDataSetChanged();
-
-
 
             }
 

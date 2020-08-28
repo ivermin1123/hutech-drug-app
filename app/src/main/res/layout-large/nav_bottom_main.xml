@@ -8,10 +8,14 @@
         android:layout_gravity="bottom"
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        app:textSize="20sp"
         app:iconSize="40dp"
+        app:iconTint="#757575"
+        app:iconTintActive="#212121"
+        app:indicatorColor="#ECECEC"
+        app:indicatorRadius="10dp"
+        app:textColor="#212121"
+        app:textSize="20sp"
         android:layout_height="85dp"
-        app:backgroundColor="@color/colorPrimary"
         app:menu="@menu/bottom_navigation_menu"/>
 
 </LinearLayout>

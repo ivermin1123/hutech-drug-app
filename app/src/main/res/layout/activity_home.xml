@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_home"
+    android:background="@null"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
@@ -14,35 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-<!--    <include-->
-<!--        layout="@layout/nav_bottom_main"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        />-->
-
-<!--    <me.ibrahimsn.lib.SmoothBottomBar-->
-<!--        android:id="@+id/bottomBar"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="70dp"-->
-<!--        app:backgroundColor="@color/colorPrimary"-->
-<!--        app:menu="@menu/bottom_navigation_menu"/>-->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+    <include
+        layout="@layout/nav_bottom_main"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
-
-<!--    <me.ibrahimsn.lib.SmoothBottomBar-->
-<!--        android:fitsSystemWindows="true"-->
-<!--        android:id="@+id/nav_view2"-->
-<!--      -->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:menu="@menu/bottom_navigation_menu">-->
-
-<!--    </me.ibrahimsn.lib.SmoothBottomBar>-->
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>

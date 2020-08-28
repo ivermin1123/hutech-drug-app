@@ -46,10 +46,6 @@ public class SearchActivity extends AppCompatActivity {
         mData=  FirebaseDatabase.getInstance().getReference();
         AnhXa();
         mMedicineDatabase= FirebaseDatabase.getInstance().getReference().child("Thuoc");
-
-
-
-
     }
 
     //========================================================

@@ -10,8 +10,9 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_user">User</string>
+    <string name="menu_drug">Drug</string>
+    <string name="menu_store">Pharma</string>
 
     <string name="map_api_key">AIzaSyAzKmakGKZJzjmcaAlHlEX-hQGqvSOvbhQ</string>
     <string name="forgot_password">Forgot password?</string>
@@ -21,6 +22,7 @@
     <string name="drugs">Thuốc</string>
     <string name="ho_t_ch_t">Hoạt chất</string>
     <string name="content_text">Tương tác thuốc là sự tác dụng qua lại lẫn nhau giữa thuốc này với thuốc khác, giữa thuốc với tình trạng sinh lý của cơ thể.</string>
+
 
 
     <string-array name="drugs">
