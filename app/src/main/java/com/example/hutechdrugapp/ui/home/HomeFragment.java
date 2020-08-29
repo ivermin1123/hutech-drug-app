@@ -99,7 +99,7 @@ public class HomeFragment extends Fragment {
         ViewPager2 drugsViewPager = root.findViewById(R.id.drugsViewPager);
 
         medicines = new ArrayList<>();
-        adapter = new DrugAdapter(medicines);
+        adapter = new DrugAdapter(medicines, 1);
 
         drugsViewPager.setAdapter(adapter);
         drugsViewPager.setClipToPadding(false);

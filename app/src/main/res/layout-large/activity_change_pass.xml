@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.435" />
 
     <EditText
-        android:id="@+id/editTextEmail"
+        android:id="@+id/edtCurrentPass"
         android:layout_width="430dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -99,19 +99,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.537" />
-
-    <TextView
-        android:id="@+id/txtForgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/forgot_password"
-        android:textColor="#6078EA"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextConfirmPassword"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
 
     <EditText
         android:id="@+id/editTextConfirmPassword"
