@@ -28,6 +28,7 @@
     <string name="enter_your_email">Enter your email address</string>
     <string name="we_send_email">We will email you a link to \n reset your password.</string>
     <string name="enter_email_address">Enter Email Address</string>
+    <string name="profile">Profile</string>
 
 
     <string-array name="drugs">

@@ -258,7 +258,7 @@ public class DetailsActivity extends AppCompatActivity {
 
                                 btnSaveMedicine.setImageResource(R.drawable.btn_deletedrug);
                                 btnSaveMedicine.setTag("btn_deletedrug");
-                                DeleteData();
+                              //  DeleteData();
 
                             }
                             else {

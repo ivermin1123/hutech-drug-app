@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_black"
-        android:text="Thông tin cá nhân"
+        android:text="@string/profile"
         android:textColor="#000"
         android:textSize="27sp"
         android:textStyle="bold" />
@@ -25,7 +25,7 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:src="@drawable/ex_avatar_1"></de.hdodenhof.circleimageview.CircleImageView>
+        android:src="@drawable/ex_avatar_1"/>
 
     <TextView
         android:id="@+id/txvDisplayName"

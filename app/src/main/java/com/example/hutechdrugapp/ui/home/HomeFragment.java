@@ -1,39 +1,28 @@
 package com.example.hutechdrugapp.ui.home;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.hutechdrugapp.Adapter.DrugAdapter;
-import com.example.hutechdrugapp.Adapter.MedicineAdapter;
-import com.example.hutechdrugapp.ChangePassActivity;
-import com.example.hutechdrugapp.MapActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 import com.example.hutechdrugapp.R;
-import com.example.hutechdrugapp.SigninActivity;
-import com.example.hutechdrugapp.ui.user.UserFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;

@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,12 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hutechdrugapp.Adapter.SearchAdapter;
 import com.example.hutechdrugapp.Model.Medicine;
 import com.example.hutechdrugapp.R;
-import com.example.hutechdrugapp.SearchActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.util.ArrayList;
 
@@ -38,7 +37,6 @@ public class DrugFragment extends Fragment {
 
     ArrayList<Medicine> list;
     private DatabaseReference mMedicineDatabase;
-
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -59,8 +57,7 @@ public class DrugFragment extends Fragment {
 
         mresult=root.findViewById(R.id.mResultList);
         searchView=root.findViewById(R.id.SearchView);
-//         adapter=new SearchAdapter(list);
-//        mresult.setAdapter(adapter);
+
 
 
         return root;
@@ -81,9 +78,11 @@ public class DrugFragment extends Fragment {
                             list.add(ds.getValue(Medicine.class));
 
                         }
+
                             adapter=new SearchAdapter(list);
                             mresult.setAdapter(adapter);
                       //  mresult.setAdapter(adapter);
+
 
                     }
                 }
@@ -105,13 +104,10 @@ public class DrugFragment extends Fragment {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     try {
-
                         search(newText);
-
                     }catch (Exception e){
                         Log.d("listdrug",e.toString());
                     }
-
                     return true;
                 }
             });

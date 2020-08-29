@@ -17,7 +17,7 @@
         android:fontFamily="@font/poppins_black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Thông tin cá nhân"/>
+        android:text="@string/profile"/>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="70dp"
@@ -64,7 +64,8 @@
         android:layout_marginTop="90dp"
         android:background="@null"
         android:scaleType="fitXY"
-        android:src="@drawable/btn_change_pwd" />
+        android:src="@drawable/btn_change_pwd"
+        />
 
     <ImageButton
         android:id="@+id/btn_change_name"
