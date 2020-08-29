@@ -128,20 +128,6 @@
         app:layout_constraintTop_toBottomOf="@+id/txtEmail"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/txtForgot"
-        android:layout_width="140dp"
-        android:layout_height="22dp"
-        android:layout_marginEnd="4dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="@string/forgot_password"
-        android:textColor="#6078EA"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextConfirmPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmPassword"
-        app:layout_constraintVertical_bias="0.04" />
-
     <ImageButton
         android:id="@+id/confirmnewpass"
         android:layout_width="258dp"
@@ -150,10 +136,10 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857"
+        app:layout_constraintVertical_bias="0.819"
         app:srcCompat="@drawable/btn_save_changes" />
 
     <ImageButton

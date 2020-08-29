@@ -23,15 +23,22 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.ViewHolder> {
 
     private List<Medicine> medicineList;
     private static DecimalFormat df2 = new DecimalFormat("#.#");
+    private int type;
 
-    public DrugAdapter(List<Medicine> medicineList) {
+    public DrugAdapter(List<Medicine> medicineList, int type) {
         this.medicineList = medicineList;
+        this.type = type;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_location, parent, false));
+        if(type == 1){
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_location, parent, false));
+        }
+        else{
+            return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_drugdetail, parent, false));
+        }
     }
 
     @Override
@@ -77,10 +84,13 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.ViewHolder> {
 
         void setLocationData(Medicine medicine){
             Picasso.get().load(medicine.getHinhAnh()).into(kbvLocation);
-            textTitle.setText(medicine.getTenThuoc());
-            textLocation.setText(String.format("HSD: %s", medicine.getHSD()));
-            double random_double = Math.random() * (5 - 4 + 0.1) + 4;
-            textStarRating.setText(df2.format(random_double));
+            if(textTitle != null)
+                textTitle.setText(medicine.getTenThuoc());
+            if(textLocation != null)
+                textLocation.setText(String.format("HSD: %s", medicine.getHSD()));
+            double random_double = Math.random() * (9.9 - 8 + 0.1) + 8;
+            if(textStarRating != null)
+                textStarRating.setText(df2.format(random_double));
         }
     }
 }

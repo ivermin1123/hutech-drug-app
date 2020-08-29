@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.example.flatdialoglibrary.dialog.FlatDialog;
 import com.example.hutechdrugapp.ui.user.UserFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,10 +27,10 @@ import java.util.regex.Pattern;
 public class ChangePassActivity extends AppCompatActivity {
 
 
-    EditText edtNewPass,edtEntirePassword,edtCurrentPass;
+    EditText edtNewPass, edtEntirePassword, edtCurrentPass;
     ImageButton btnConfirm;
 
-    ImageButton  btnBack;
+    ImageButton btnBack;
 
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
@@ -51,13 +52,15 @@ public class ChangePassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_change_pass);
 //        mAuth = FirebaseAuth.getInstance();
 //        mUser = mAuth.getCurrentUser();
-        edtNewPass=findViewById(R.id.edtNewPass);
-        edtEntirePassword=findViewById(R.id.editTextConfirmPassword);
-        btnConfirm=findViewById(R.id.confirmnewpass);
+        edtCurrentPass = findViewById(R.id.edtCurrentPass);
+        edtNewPass = findViewById(R.id.edtNewPass);
+        edtEntirePassword = findViewById(R.id.editTextConfirmPassword);
+        btnConfirm = findViewById(R.id.confirmnewpass);
 
-        edtCurrentPass=findViewById(R.id.edtCurrentPass);
+        edtCurrentPass.requestFocus();
 
-        btnBack=findViewById(R.id.btnBack) ;
+
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,33 +68,30 @@ public class ChangePassActivity extends AppCompatActivity {
             }
         });
 
-
-
         try {
             btnConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if( !validatePassWord() | !validateEntirePassword() | !validateCurrentPassWord()) {
+                    Log.d("changepass", "ec");
+                    if (!validatePassWord() | !validateEntirePassword() | !validateCurrentPassWord()) {
                         Toast.makeText(ChangePassActivity.this, "Hãy nhập đầy đủ thông tin!", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         //confirmChange();
                         CheckCurrentPass();
-
                     }
                 }
             });
 
-
-        }catch (Exception e){
-            Log.d("changepass",e.toString());
+        } catch (Exception e) {
+            Log.d("changepass", e.toString());
         }
 
     }
-    private void confirmChange(){
+
+    private void confirmChange() {
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        String  newPass=edtNewPass.getText().toString();
+        String newPass = edtNewPass.getText().toString();
 
         mUser.updatePassword(newPass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -103,36 +103,34 @@ public class ChangePassActivity extends AppCompatActivity {
         });
 
     }
-    private boolean validatePassWord(){
+
+    private boolean validatePassWord() {
         String passwordInput = edtNewPass.getText().toString();
-        if(passwordInput.equals("") && !passwordInput.matches("\\S")) {
+        if (passwordInput.equals("") && !passwordInput.matches("\\S")) {
             edtNewPass.setError("Field can't be empty!");
             return false;
-        } else if(!PASSWORD_PATTERN.matcher(passwordInput).matches()){
+        } else if (!PASSWORD_PATTERN.matcher(passwordInput).matches()) {
             edtNewPass.setError("Password too weak!,space not allowed");
             return false;
-        }
-        else
-        {
+        } else {
             edtNewPass.setError(null);
             return true;
         }
     }
 
     //kiem tra xac nhan password
-    private boolean validateEntirePassword(){
+    private boolean validateEntirePassword() {
         String EntirePasswordInput = edtEntirePassword.getText().toString().trim();
-        String Password=edtNewPass.getText().toString().trim();
-        if(!EntirePasswordInput.equals(Password)){
+        String Password = edtNewPass.getText().toString().trim();
+        if (!EntirePasswordInput.equals(Password)) {
             edtEntirePassword.setError("Entire Wrong !!!");
 
             return false;
-        }else if(EntirePasswordInput.isEmpty()){
+        } else if (EntirePasswordInput.isEmpty()) {
             edtEntirePassword.setError("Field can't be empty!");
             return false;
 
-        }
-        else {
+        } else {
 
             edtEntirePassword.setError(null);
             return true;
@@ -141,14 +139,12 @@ public class ChangePassActivity extends AppCompatActivity {
 
     // kiem tra edittext current pass null
 
-    private boolean validateCurrentPassWord(){
+    private boolean validateCurrentPassWord() {
         String passwordInput = edtCurrentPass.getText().toString();
-        if(passwordInput.equals("") && !passwordInput.matches("\\S")) {
+        if (passwordInput.equals("") && !passwordInput.matches("\\S")) {
             edtCurrentPass.setError("Field can't be empty!");
             return false;
-        }
-        else
-        {
+        } else {
             edtCurrentPass.setError(null);
             return true;
         }
@@ -156,34 +152,41 @@ public class ChangePassActivity extends AppCompatActivity {
 
     // kiem tra password hien tai
 
-    private void CheckCurrentPass(){// check pass hien tai va thay doi pass
+    private void CheckCurrentPass() {// check pass hien tai va thay doi pass
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         mAuth.signInWithEmailAndPassword(mUser.getEmail(), edtCurrentPass.getText().toString())
-            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-        @Override
-        public void onComplete(@NonNull Task<AuthResult> task) {
-            if (task.isSuccessful()) {
-                // Sign in success, update UI with the signed-in user's information
-                confirmChange();
-                Log.d("success","success");
-                Intent intent=new Intent(ChangePassActivity.this,HomeActivity.class);
-                startActivity(intent);
-                finish();
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            confirmChange();
+                            Log.d("success", "success");
+                            final FlatDialog flatDialog = new FlatDialog(ChangePassActivity.this);
+                            flatDialog.setTitle("Success")
+                                    .setSubtitle(String.format("Mat khau da duoc thay doi."))
+                                    .setFirstButtonText("OK")
+                                    .withFirstButtonListner(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            onBackPressed();
+                                        }
+                                    })
+                                    .show();
 
-
-            } else {
-                // If sign in fails, display a message to the user.
-                edtCurrentPass.setError("mat khau hien tai khong dung");
-
-                // ...
-            }
-            // ...
-        }
-    });
-
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            edtCurrentPass.setError("mat khau hien tai khong dung");
+                            // ...
+                        }
+                        // ...
+                    }
+                });
     }
 
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

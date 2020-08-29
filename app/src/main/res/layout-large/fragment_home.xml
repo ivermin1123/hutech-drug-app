@@ -23,8 +23,8 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:contentDescription="@string/app_name"
-            android:scaleType="centerCrop"
-            android:src="@drawable/user_img" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ex_avatar_1" />
     </androidx.cardview.widget.CardView>
 
     <TextView
