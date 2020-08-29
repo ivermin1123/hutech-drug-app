@@ -72,6 +72,12 @@ public class DetailsActivity extends AppCompatActivity {
 
         //Set ViewPager 2
         drugsViewPager = findViewById(R.id.drugsViewPagerDetail);
+        drugsViewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         medicines = new ArrayList<>();
         Intent intent=getIntent();
         Medicine  medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
@@ -108,7 +114,6 @@ public class DetailsActivity extends AppCompatActivity {
         });
     }
     private void Anhxa(){
-        imgMedicine=findViewById(R.id.imgMedicineDetails);
         txvNameMedicine=findViewById(R.id.txvNameMedicineDetails);
         txvHSD=findViewById(R.id.txvHsdDetails);
         txvTacDung=findViewById(R.id.txvtacdung);
