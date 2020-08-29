@@ -1,55 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_home_1"
+    android:layout_marginBottom="60dp"
     tools:context=".ui.home.HomeFragment">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content"
         tools:context=".SearchActivity"
         >
+
+        <LinearLayout
+            android:id="@+id/ln_top"
+            android:layout_width="match_parent"
+            android:background="@drawable/layout_bg_detail"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/txvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="0dp"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:text="Drug"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </LinearLayout>
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/SearchView"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:layout_marginLeft="15dp"
-            android:padding="10dp"
-            app:queryHint="search"
+            app:showAsAction="always"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:queryHint="Search here"
+            />
 
-
-            >
-
-        </androidx.appcompat.widget.SearchView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mResultList"
-            android:layout_margin="5dp"
-            android:layout_marginTop="50dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="30dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </androidx.recyclerview.widget.RecyclerView>
-
-
 
     </LinearLayout>
 
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycle_view"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_below="@+id/linearSearch"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content">-->
-
-<!--        </androidx.recyclerview.widget.RecyclerView>-->
-
-</RelativeLayout>
+</ScrollView>
 
 
 

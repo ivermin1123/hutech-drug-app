@@ -54,9 +54,7 @@ public class DrugAdapter extends RecyclerView.Adapter<DrugAdapter.ViewHolder> {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("MedicineObject",medicineList.get(position));
                     //
-
                     view.getContext().startActivity(intent);
-
                 }catch (Exception e){
                     Log.d("NNNN",e.toString());
                 }
