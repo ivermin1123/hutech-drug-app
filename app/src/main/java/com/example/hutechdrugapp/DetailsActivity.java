@@ -94,6 +94,12 @@ public class DetailsActivity extends AppCompatActivity {
 
         //Set ViewPager 2
         drugsViewPager = findViewById(R.id.drugsViewPagerDetail);
+        drugsViewPager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         medicines = new ArrayList<>();
         Intent intent=getIntent();
         Medicine  medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
@@ -144,7 +150,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
     private void Anhxa(){
-        imgMedicine=findViewById(R.id.imgMedicineDetails);
         txvNameMedicine=findViewById(R.id.txvNameMedicineDetails);
         txvHSD=findViewById(R.id.txvHsdDetails);
         txvTacDung=findViewById(R.id.txvtacdung);
@@ -184,7 +189,7 @@ public class DetailsActivity extends AppCompatActivity {
                             else {
                                 MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
                                 mData.child("ThuocDaTraCuu").push().setValue(saved);
-                                btnSaveMedicine.setBackgroundColor(R.color.colorBlue);
+
                             }
                         }
 
@@ -232,7 +237,7 @@ public class DetailsActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
                                // Log.d("DaLuu","Duplicate");
-                                  btnSaveMedicine.setBackgroundColor(R.color.colorBlue);
+
                             }
                             else {
 //                                MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
