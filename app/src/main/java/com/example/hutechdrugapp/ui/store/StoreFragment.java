@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -68,26 +69,18 @@ public class StoreFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
-
         btnSearch=root.findViewById(R.id.btnSearchStore);
-//
         try {
             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
             fetchLastLocation();
-
-
         }catch (Exception e)
         {
             Log.d("Map",e.toString());
         }
 
-
-
-
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 //                //map.clear();
                 String hospital="drugstore";
                 String url=getUrl(currentLocation.getLatitude(),currentLocation.getLongitude(),hospital);
@@ -97,7 +90,6 @@ public class StoreFragment extends Fragment implements OnMapReadyCallback {
                 GetNearbyPlacesData getNearbyPlacesData=new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(dataTransfer);
                 Toast.makeText(getContext(),"showing nearby drug",Toast.LENGTH_LONG).show();
-
             }
 
 
@@ -175,10 +167,6 @@ public class StoreFragment extends Fragment implements OnMapReadyCallback {
         googlePlaceUrl.append("&type="+nearbyPlace);
         googlePlaceUrl.append("&sensor=true");
         googlePlaceUrl.append("&key="+getResources().getString(R.string.map_api_key));
-
-
-
-
 
         return googlePlaceUrl.toString();
     }

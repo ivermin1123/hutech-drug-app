@@ -226,18 +226,12 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("MedicineObject",list.get(position));
 
-
-
-
                     view.getContext().startActivity(intent);
-
                 }catch (Exception e){
                     Log.d("NNNN",e.toString());
                 }
             }
         });
-
-
     }
 
     @Override
@@ -246,7 +240,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
     }
 
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder{
+
         TextView txvNameDrug,phanloai,hsd;
         ImageView imgDrug;
         CardView cardView;

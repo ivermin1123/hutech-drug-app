@@ -13,6 +13,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hutechdrugapp.Adapter.SearchAdapter;
@@ -29,7 +30,6 @@ import java.util.ArrayList;
 
 public class DrugFragment extends Fragment {
 
-    private DrugViewModel drugViewModel;
     private RecyclerView mresult;
     private SearchView searchView;
     DatabaseReference mData;
@@ -40,8 +40,7 @@ public class DrugFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        drugViewModel =
-                ViewModelProviders.of(this).get(DrugViewModel.class);
+        DrugViewModel drugViewModel = ViewModelProviders.of(this).get(DrugViewModel.class);
         View root = inflater.inflate(R.layout.fragment_drug, container, false);
        // final TextView textView = root.findViewById(R.id.text_drug);
         drugViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -73,23 +72,28 @@ public class DrugFragment extends Fragment {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
                         list=new ArrayList<>();
-
                         for (DataSnapshot ds:snapshot.getChildren()){
                             list.add(ds.getValue(Medicine.class));
-
                         }
-
-                            adapter=new SearchAdapter(list);
-                            mresult.setAdapter(adapter);
-                      //  mresult.setAdapter(adapter);
-
-
+//<<<<<<< HEAD
+//
+//                            adapter=new SearchAdapter(list);
+//                            mresult.setAdapter(adapter);
+//                      //  mresult.setAdapter(adapter);
+//
+//
+//=======
+                        SearchAdapter adapter=new SearchAdapter(list);
+                        LinearLayoutManager manager = new LinearLayoutManager(getContext());
+                        mresult.setLayoutManager(manager);
+                        mresult.setHasFixedSize(true);
+                        mresult.setAdapter(adapter);
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getContext(),error.getMessage(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(),error.getMessage(),Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -125,8 +129,12 @@ public class DrugFragment extends Fragment {
             }
 
         }
+//<<<<<<< HEAD
+//
+//         adapter=new SearchAdapter(list);
+//=======
+        SearchAdapter adapter=new SearchAdapter(mylist);
 
-         adapter=new SearchAdapter(list);
         mresult.setAdapter(adapter);
     }
 

@@ -22,9 +22,9 @@
     <string name="drugs">Thuốc</string>
     <string name="ho_t_ch_t">Hoạt chất</string>
     <string name="content_text">Tương tác thuốc là sự tác dụng qua lại lẫn nhau giữa thuốc này với thuốc khác, giữa thuốc với tình trạng sinh lý của cơ thể.</string>
-    <string name="xinChao">Xin chào!!</string>
-    <string name="chucngaymoi">Chúc bạn có một ngày vui vẻ</string>
-    <string name="timkiemHome">Tìm kiếm thứ gì đó nào ❤</string>
+    <string name="xinChao">Hi!!</string>
+    <string name="chucngaymoi">Have a nice day!</string>
+    <string name="timkiemHome">Let\'s find something ❤</string>
     <string name="enter_your_email">Enter your email address</string>
     <string name="we_send_email">We will email you a link to \n reset your password.</string>
     <string name="enter_email_address">Enter Email Address</string>

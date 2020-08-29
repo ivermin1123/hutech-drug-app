@@ -2,6 +2,7 @@ package com.example.hutechdrugapp.ui.user;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,15 +17,22 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 
 //import com.example.flatdialoglibrary.dialog.FlatDialog;
+import com.example.flatdialoglibrary.dialog.FlatDialog;
 import com.example.hutechdrugapp.ChangePassActivity;
 
 import com.example.hutechdrugapp.Database.Database;
 
+
 import com.example.hutechdrugapp.HistorySaveActivity;
+
+import com.example.hutechdrugapp.ForgotpwdActivity;
+
 import com.example.hutechdrugapp.Model.Medicine;
 
 import com.example.hutechdrugapp.HomeActivity;
@@ -32,8 +40,11 @@ import com.example.hutechdrugapp.HomeActivity;
 import com.example.hutechdrugapp.R;
 import com.example.hutechdrugapp.SigninActivity;
 import com.example.hutechdrugapp.ui.home.HomeFragment;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -60,7 +71,7 @@ public class UserFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseUser mUser;
     private DatabaseReference mData;
-    ImageButton imgbtnChangeName;
+    ImageButton imgbtnChangeName, imgbtnSaveDrug;
     ArrayList<Medicine> medicines;
 
 
@@ -90,19 +101,80 @@ public class UserFragment extends Fragment {
 
         mData = FirebaseDatabase.getInstance().getReference();
         database = new Database(getContext(), "product.sqlite", null, 3);
+        imgbtnSaveDrug = root.findViewById(R.id.btn_saved_drug);
         imgbtnChangeName = root.findViewById(R.id.btn_change_name);
         imgbtnChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                final FlatDialog flatDialog = new FlatDialog(getContext());
+                flatDialog.setTitle("Change name")
+                        .setFirstButtonText("Change")
+                        .setFirstTextFieldHint("Enter your name")
+                        .setFirstTextField(mUser.getDisplayName())
+                        .isCancelable(true)
+                        .setSecondButtonText("Cancle")
+                        .withFirstButtonListner(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(flatDialog.getFirstTextField())
+                                        .build();
+
+                                mUser.updateProfile(profileUpdates)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    flatDialog.dismiss();
+                                                    final FlatDialog flatDialog2 = new FlatDialog(getContext());
+                                                    flatDialog2.setTitle("Success")
+                                                            .setSubtitle("Your name was changed.")
+                                                            .setFirstButtonText("OK")
+                                                            .withFirstButtonListner(new View.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(View view) {
+                                                                    flatDialog2.dismiss();
+                                                                    txvDisplayName.setText(mUser.getDisplayName());
+                                                                }
+                                                            })
+                                                            .show();
+                                                }
+                                            }
+                                        });
+                            }
+                        })
+                        .withSecondButtonListner(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                flatDialog.dismiss();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        imgbtnSaveDrug.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent=new Intent(getContext(), HistorySaveActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                 startActivity(intent);
                 Intent intent=new Intent(getContext(), HistorySaveActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                 startActivity(intent);
+                startActivity(intent);
+
             }
         });
 
 
         txvDisplayName = root.findViewById(R.id.txvDisplayName);
-        txvDisplayName.setText(mUser.getDisplayName());
+        String nameuser = mUser.getDisplayName();
+        if(nameuser == null){
+            txvDisplayName.setText("Please set your name bellow");
+        }else{
+            txvDisplayName.setText(mUser.getDisplayName());
+        }
         txvEmail = root.findViewById(R.id.txvEmail);
         txvEmail.setText(mUser.getEmail());
 
@@ -125,7 +197,7 @@ public class UserFragment extends Fragment {
                             public void OnClick(String input) {
                                 FirebaseAuth.getInstance().signOut();
                                 getActivity().finish();
-                                Intent intent=new Intent(getContext(), SigninActivity.class);
+                                Intent intent = new Intent(getContext(), SigninActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
                             }
@@ -139,7 +211,6 @@ public class UserFragment extends Fragment {
                         .build();
             }
         });
-
 
 
         // final TextView textView = root.findViewById(R.id.text_home);
@@ -158,24 +229,22 @@ public class UserFragment extends Fragment {
 //
 //            }
 
-            //=========================================================================================================
-            private void changePass() {
-                btn_change_pwd.setOnClickListener(new View.OnClickListener() {
+    //=========================================================================================================
+    private void changePass() {
+        btn_change_pwd.setOnClickListener(new View.OnClickListener() {
 
-                    @Override
-                    public void onClick(View view) {
-                        try {
-                            Intent intent = new Intent(getContext(), ChangePassActivity.class);
-                            startActivity(intent);
-                        } catch (Exception e) {
-                            Log.d("newpass", e.toString());
-                        }
+            @Override
+            public void onClick(View view) {
+                try {
+                    Intent intent = new Intent(getContext(), ChangePassActivity.class);
+                    startActivity(intent);
+                } catch (Exception e) {
+                    Log.d("newpass", e.toString());
+                }
 
-                    }
-                });
             }
-
-
+        });
+    }
 
 }
 
