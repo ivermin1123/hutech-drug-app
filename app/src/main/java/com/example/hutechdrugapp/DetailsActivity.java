@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,8 +15,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.load.model.ModelLoader;
 import com.example.hutechdrugapp.Database.Database;
 import com.example.hutechdrugapp.Model.Medicine;
+import com.example.hutechdrugapp.Model.MedicineSaved;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -23,6 +33,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
@@ -33,6 +45,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetailsActivity extends AppCompatActivity {
     TextView txvNameMedicine,txvHSD,txvTacDung,txvChiDinh,txvChongChiDinh;
@@ -49,10 +64,10 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
         Anhxa();
-        database=new Database(this,"product.sqlite",null,3);
-       // database.QueryData("DROP TABLE IF EXISTS Product");
+       // database=new Database(this,"product.sqlite",null,3);
+     //   database.QueryData("DROP TABLE IF EXISTS Product");
 
-        CreateTable();
+     //   CreateTable();
         mAuth = FirebaseAuth.getInstance();
         mUser=mAuth.getCurrentUser();
         mData= FirebaseDatabase.getInstance().getReference();
@@ -61,18 +76,26 @@ public class DetailsActivity extends AppCompatActivity {
         LoadAnh();
 
         loadDetailsMedicine();
+        CheckData();
+
+        try {
+            btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
 
-        btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                SaveData();
+                    SaveData();
+//                    loadData();
+
+                }
+            });
+
+        }catch (Exception e){
+            Log.d("saveDrug",e.toString());
+        }
 
 
-
-            }
-        });
     }
     private void Anhxa(){
         imgMedicine=findViewById(R.id.imgMedicineDetails);
@@ -85,63 +108,111 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
-    private void CreateTable()
-    {
-        boolean tableExist=tableExists("Product");
-        Log.d("AAA", String.valueOf(tableExist));
 
 
-        if(!tableExist)
-        {
+    private void SaveData(){// save medicine
 
-            // tao bang
-            //database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenSP VARCHAR(100),Gia DOUBLE)");
-            database.QueryData("CREATE TABLE IF NOT EXISTS Product(Id INTEGER PRIMARY KEY AUTOINCREMENT,TenThuoc VARCHAR(100))");
+        Intent intent=getIntent();
+        final Medicine medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
 
-        }
-        else {
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child("ThuocDaTraCuu").orderByChild("tenThuoc").equalTo(medicine.getTenThuoc());
 
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // dataSnapshot is the "issue" node with all children with id 0
+                    Query query1=reference.child("ThuocDaTraCuu").orderByChild("email").equalTo(mUser.getEmail());
+                    query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @SuppressLint("ResourceAsColor")
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                Log.d("DaLuu","Duplicate");
 
-        }
+                            }
+                            else {
+                                MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
+                                mData.child("ThuocDaTraCuu").push().setValue(saved);
+                                btnSaveMedicine.setBackgroundColor(R.color.colorBlue);
+                            }
+                        }
 
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+//                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
+//                        // do something with the individual "issues"
+//                    }
+                }
+                else {
+                    MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
+                    mData.child("ThuocDaTraCuu").push().setValue(saved);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
-    private void SaveData(){
-        String tensp=txvNameMedicine.getText().toString();
-        //  String cost=edtCostSP.getText().toString();
+    // check Duplicate
+    private void CheckData(){// save medicine
 
+        Intent intent=getIntent();
+        final Medicine medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
 
-        try {
-            database.QueryData("INSERT  INTO Product(Id,TenThuoc) SELECT null,'"+tensp+"' WHERE NOT EXISTS(SELECT TenThuoc FROM Product WHERE TenThuoc='"+tensp+"')");
-//OR REPLACE
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child("ThuocDaTraCuu").orderByChild("tenThuoc").equalTo(medicine.getTenThuoc());
 
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // dataSnapshot is the "issue" node with all children with id 0
+                    Query query1=reference.child("ThuocDaTraCuu").orderByChild("email").equalTo(mUser.getEmail());
+                    query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @SuppressLint("ResourceAsColor")
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                               // Log.d("DaLuu","Duplicate");
+                                  btnSaveMedicine.setBackgroundColor(R.color.colorBlue);
+                            }
+                            else {
+//                                MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
+//                                mData.child("ThuocDaTraCuu").push().setValue(saved);
+                            }
+                        }
 
-        }catch (Exception e){
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
 
-            Log.d("BBB",e.toString());
-        }
+                        }
+                    });
+//                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
+//                        // do something with the individual "issues"
+//                    }
+                }
+                else {
+//                    MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
+//                    mData.child("ThuocDaTraCuu").push().setValue(saved);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
-
-    boolean tableExists( String tableName)
-    {
-        if (tableName == null )
-        {
-            return false;
-        }
-        Cursor cursor = database.GetData("SELECT COUNT(*) FROM sqlite_master WHERE type = 'table' AND name ='"+tableName+"'");
-        if (!cursor.moveToFirst())
-        {
-            cursor.close();
-            return false;
-        }
-        int count = cursor.getInt(0);
-        cursor.close();
-        return count > 0;
-    }
-
-
-
 
 
 

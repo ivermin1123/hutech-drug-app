@@ -23,6 +23,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.hutechdrugapp.ChangePassActivity;
 
 import com.example.hutechdrugapp.Database.Database;
+import com.example.hutechdrugapp.HistorySaveActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 
 import com.example.hutechdrugapp.HomeActivity;
@@ -71,7 +72,7 @@ public class UserFragment extends Fragment {
     Database database;
     private UserViewModel userViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+    public View onCreateView(@NonNull final LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         userViewModel =
                 ViewModelProviders.of(this).get(UserViewModel.class);
@@ -92,12 +93,9 @@ public class UserFragment extends Fragment {
         imgbtnChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    //GetData();
-                } catch (Exception e) {
-                    //Log.d("tensp", e.toString());
-                }
-
+                Intent intent=new Intent(getContext(), HistorySaveActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                 startActivity(intent);
             }
         });
 
@@ -177,54 +175,6 @@ public class UserFragment extends Fragment {
             }
 
 
-            private void GetData() {
-                Cursor dataProduct = database.GetData("SELECT TenThuoc FROM Product");
-                // Toast.makeText(getContext(),n,Toast.LENGTH_LONG).show();
-                // int size =dataProduct.getColumnCount();
-                ArrayList<String> arrayList = new ArrayList<>();
-                arrayList.clear();
-                while (dataProduct.moveToNext()) {
-                    //  int id=dataProduct.getInt(0);
-                    String tensp = dataProduct.getString(0);
 
-                    arrayList.add(tensp);
-
-
-                }
-                for (int i = 0; i < arrayList.size(); i++) {
-
-                }
-
-            }
-
-            private Query GetDataFromFireBase(String tenThuoc) {
-                Query query = FirebaseDatabase.getInstance().getReference("Thuoc").orderByChild("TenThuoc").equalTo(tenThuoc);
-                query.addListenerForSingleValueEvent(valueEventListener);
-                return query;
-            }
-
-
-            ValueEventListener valueEventListener = new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    medicines.clear();
-                    if (snapshot.exists()) {
-                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
-                            Medicine medicine = snapshot1.getValue(Medicine.class);
-                            medicines.add(new Medicine(medicine.getChiDinh(), medicine.getChongChiDinh(), medicine.getHSD(), medicine.getHinhAnh(), medicine.getHoatChat(), medicine.getNongDo(), medicine.getPhanLoai(), medicine.getTacDung(), medicine.getTenThuoc()));
-                        }
-//                adapter.notifyDataSetChanged();
-//                onStop();
-                    }
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-
-
-            };
 }
 

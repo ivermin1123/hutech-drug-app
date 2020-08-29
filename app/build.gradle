@@ -84,5 +84,8 @@ dependencies {
     implementation 'com.github.mejdi14:Flat-Dialog-Android:1.0.5'
     implementation 'com.github.salehyarahmadi:AndExAlertDialog:v1.0.1'
 
+    //Volley library ahihi
+    implementation 'com.android.volley:volley:1.1.1'
+
 
 }

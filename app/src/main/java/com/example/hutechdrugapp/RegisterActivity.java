@@ -93,8 +93,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         super.onBackPressed();
-        Intent myIntent = new Intent(view.getContext(), SigninActivity.class);
-        startActivityForResult(myIntent, 0);
     }
 
     private void AnhXa(){
@@ -120,12 +118,7 @@ private void DangKy(){
                     // Sign in success, update UI with the signed-in user's information
                     if(task.isSuccessful())
                     {
-//<<<<<<< HEAD
-//                        Toast.makeText(RegisterActivity.this,"Dang Ky Thanh Cong",Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(RegisterActivity.this, SigninActivity.class);
-//                        startActivity(intent);
-//                        mAuth.signOut();
-//=======
+
                         final FlatDialog flatDialog = new FlatDialog(RegisterActivity.this);
                         flatDialog.setTitle("Success")
                                 .setSubtitle("Dang Ky Thanh Cong.")
