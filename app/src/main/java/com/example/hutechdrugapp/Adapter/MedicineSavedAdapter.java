@@ -1,5 +1,6 @@
 package com.example.hutechdrugapp.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +21,18 @@ import java.util.ArrayList;
 public class MedicineSavedAdapter extends RecyclerView.Adapter<MedicineSavedAdapter.MyViewHolder> {
 
     ArrayList<MedicineSaved> list;
+    Context context;
 
-    public MedicineSavedAdapter(ArrayList<MedicineSaved> list) {
+    public MedicineSavedAdapter(ArrayList<MedicineSaved> list, Context context) {
         this.list = list;
+        this.context = context;
     }
 
     @NonNull
     @Override
     public MedicineSavedAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_search,parent,false);
+
         return new MyViewHolder(view);
     }
 
@@ -60,8 +64,6 @@ public class MedicineSavedAdapter extends RecyclerView.Adapter<MedicineSavedAdap
             phanloai=itemView.findViewById(R.id.txvPhanLoai);
             hsd=itemView.findViewById(R.id.txvHSD);
             cardView=itemView.findViewById(R.id.cardview);
-
-
         }
     }
 

@@ -100,6 +100,7 @@ public class DetailsActivity extends AppCompatActivity {
 
             }
         });
+
         medicines = new ArrayList<>();
         Intent intent=getIntent();
         Medicine  medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
@@ -117,36 +118,6 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
         CheckData();
-        //Check duplicate
-        //Neu chua luu
-        btnSaveMedicine.setTag("btn_savedrug");
-
-
-        //Neu luu roi
-        // btnSaveMedicine.setTag("btn_deletedrug");
-        try {
-            btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-
-                    String imageName = (String) btnSaveMedicine.getTag();
-                    if(imageName.equals("btn_savedrug")){
-                        SaveData();
-                        btnSaveMedicine.setImageResource(R.drawable.btn_deletedrug);
-                        btnSaveMedicine.setTag("btn_deletedrug");
-                    }else{
-                        CheckData();
-                        btnSaveMedicine.setImageResource(R.drawable.btn_savedrug);
-                        btnSaveMedicine.setTag("btn_savedrug");
-                    }
-                }
-            });
-
-
-        }catch (Exception e){
-            Log.d("TagButton",e.toString());
-        }
 
     }
     private void Anhxa(){
@@ -187,20 +158,17 @@ public class DetailsActivity extends AppCompatActivity {
 
                             }
                             else {
+
                                 MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
                                 mData.child("ThuocDaTraCuu").push().setValue(saved);
-
                             }
                         }
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
                         }
                     });
-//                    for (DataSnapshot issue : dataSnapshot.getChildren()) {
-//                        // do something with the individual "issues"
-//                    }
+
                 }
                 else {
                     MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
@@ -216,8 +184,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
-    // check Duplicate
-    private void CheckData(){// save medicine
+    private void DeleteData(){// delete medicine
 
         Intent intent=getIntent();
         final Medicine medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
@@ -230,6 +197,57 @@ public class DetailsActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     // dataSnapshot is the "issue" node with all children with id 0
+                    final Query query1=reference.child("ThuocDaTraCuu").orderByChild("email").equalTo(mUser.getEmail());
+                    query1.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @SuppressLint("ResourceAsColor")
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if(snapshot.exists()){
+                                Log.d("DaLuu","Duplicate");
+                               // reference.child("tenThuoc").getRoot().removeValue();
+
+                            }
+                            else {
+
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+
+                }
+                else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+
+    // check Duplicate
+    private void CheckData(){
+
+        Intent intent=getIntent();
+        final Medicine medicine= (Medicine) intent.getSerializableExtra("MedicineObject");
+
+        final DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child("ThuocDaTraCuu").orderByChild("tenThuoc").equalTo(medicine.getTenThuoc());
+
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // dataSnapshot is the "issue" node with all children with id 0
                     Query query1=reference.child("ThuocDaTraCuu").orderByChild("email").equalTo(mUser.getEmail());
                     query1.addListenerForSingleValueEvent(new ValueEventListener() {
                         @SuppressLint("ResourceAsColor")
@@ -238,10 +256,22 @@ public class DetailsActivity extends AppCompatActivity {
                             if(snapshot.exists()){
                                // Log.d("DaLuu","Duplicate");
 
+                                btnSaveMedicine.setImageResource(R.drawable.btn_deletedrug);
+                                btnSaveMedicine.setTag("btn_deletedrug");
+                                DeleteData();
+
                             }
                             else {
-//                                MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
-//                                mData.child("ThuocDaTraCuu").push().setValue(saved);
+
+                                btnSaveMedicine.setImageResource(R.drawable.btn_savedrug);
+                                btnSaveMedicine.setTag("btn_savedrug");
+                                btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        SaveData();
+                                    }
+                                });
+
                             }
                         }
 
@@ -255,6 +285,14 @@ public class DetailsActivity extends AppCompatActivity {
 //                    }
                 }
                 else {
+                    btnSaveMedicine.setImageResource(R.drawable.btn_savedrug);
+                    btnSaveMedicine.setTag("btn_savedrug");
+                    btnSaveMedicine.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SaveData();
+                        }
+                    });
 //                    MedicineSaved saved=new MedicineSaved(mUser.getEmail(),medicine.getChiDinh(),medicine.getChongChiDinh(),medicine.getHSD(),medicine.getHinhAnh(),medicine.getHoatChat(),medicine.getNongDo(),medicine.getPhanLoai(),medicine.getTacDung(),medicine.getTenThuoc());
 //                    mData.child("ThuocDaTraCuu").push().setValue(saved);
                 }

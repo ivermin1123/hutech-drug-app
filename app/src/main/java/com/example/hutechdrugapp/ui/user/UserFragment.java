@@ -24,6 +24,7 @@ import com.example.hutechdrugapp.ChangePassActivity;
 
 import com.example.hutechdrugapp.Database.Database;
 
+import com.example.hutechdrugapp.HistorySaveActivity;
 import com.example.hutechdrugapp.Model.Medicine;
 
 import com.example.hutechdrugapp.HomeActivity;
@@ -93,9 +94,9 @@ public class UserFragment extends Fragment {
         imgbtnChangeName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent=new Intent(getContext(), HistorySaveActivity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                 startActivity(intent);
+                Intent intent=new Intent(getContext(), HistorySaveActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                 startActivity(intent);
             }
         });
 

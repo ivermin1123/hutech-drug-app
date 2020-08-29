@@ -13,6 +13,10 @@ public class MedicineSaved {
     private String TacDung;
     private String TenThuoc;
 
+    public MedicineSaved() {
+
+    }
+
     public MedicineSaved(String email, String chiDinh, String chongChiDinh, String HSD, String hinhAnh, String hoatChat, String nongDo, String phanLoai, String tacDung, String tenThuoc) {
         Email = email;
         ChiDinh = chiDinh;

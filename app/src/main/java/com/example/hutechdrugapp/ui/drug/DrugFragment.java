@@ -34,6 +34,7 @@ public class DrugFragment extends Fragment {
     private RecyclerView mresult;
     private SearchView searchView;
     DatabaseReference mData;
+    SearchAdapter adapter;
 
     ArrayList<Medicine> list;
     private DatabaseReference mMedicineDatabase;
@@ -58,6 +59,8 @@ public class DrugFragment extends Fragment {
 
         mresult=root.findViewById(R.id.mResultList);
         searchView=root.findViewById(R.id.SearchView);
+//         adapter=new SearchAdapter(list);
+//        mresult.setAdapter(adapter);
 
 
         return root;
@@ -66,7 +69,7 @@ public class DrugFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        if(mMedicineDatabase!=null);
+        if(mMedicineDatabase!=null)
         {
             mMedicineDatabase.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -78,9 +81,9 @@ public class DrugFragment extends Fragment {
                             list.add(ds.getValue(Medicine.class));
 
                         }
-
-                        SearchAdapter adapter=new SearchAdapter(list);
-                        mresult.setAdapter(adapter);
+                            adapter=new SearchAdapter(list);
+                            mresult.setAdapter(adapter);
+                      //  mresult.setAdapter(adapter);
 
                     }
                 }
@@ -127,7 +130,7 @@ public class DrugFragment extends Fragment {
 
         }
 
-        SearchAdapter adapter=new SearchAdapter(mylist);
+         adapter=new SearchAdapter(list);
         mresult.setAdapter(adapter);
     }
 

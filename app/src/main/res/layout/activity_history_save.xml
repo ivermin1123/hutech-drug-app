@@ -7,7 +7,7 @@
     tools:context=".HistorySaveActivity"
     android:orientation="vertical">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mResultList"
+        android:id="@+id/mResultList2"
         android:layout_margin="5dp"
         android:layout_marginTop="50dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
