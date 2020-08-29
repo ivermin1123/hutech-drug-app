@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapActivity">
+    tools:context=".ui.store.StoreFragment">
 
 
     <Button
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:text="search Drug"
         android:id="@+id/btnSearchStore"
-        android:textSize="10sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="198dp"
+        android:layout_height="65dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/btn_search_store"
+        >
 
     </Button>
 

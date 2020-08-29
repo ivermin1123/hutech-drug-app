@@ -60,21 +60,14 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
                     Intent intent=new Intent(view.getContext(), DetailsActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     intent.putExtra("MedicineObject",list.get(position));
-
-
                     // moi lan search va select medicine thi se luu lai giu lieu da xem theo user email
-
                   //  mData.child("LichSuTraCuu").child("ThuocDaTraCuu").setValue(list.get(position));
-
                     view.getContext().startActivity(intent);
-
                 }catch (Exception e){
                     Log.d("NNNN",e.toString());
                 }
             }
         });
-
-
     }
 
     @Override
@@ -82,7 +75,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.MyViewHold
         return list.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView txvNameDrug,phanloai,hsd;
         ImageView imgDrug;
         CardView cardView;

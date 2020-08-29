@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment {
 
         //set name
         String nameUser = mUser.getDisplayName();
-        if (nameUser != null) txvNameUser.setText(String.format("Xin chào, %s", nameUser));
+        if (nameUser != null) txvNameUser.setText(String.format("Hi, %s", nameUser));
         else {
             txvNameUser.setText(R.string.xinChao);
         }
